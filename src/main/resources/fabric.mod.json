@@ -23,7 +23,8 @@
       "net.alternateadventure.stapidoohickeys.events.init.BlockListener",
       "net.alternateadventure.stapidoohickeys.events.init.ItemListener",
       "net.alternateadventure.stapidoohickeys.events.init.PlayerHandlerListener",
-      "net.alternateadventure.stapidoohickeys.events.init.RecipeListener"
+      "net.alternateadventure.stapidoohickeys.events.init.RecipeListener",
+      "net.alternateadventure.stapidoohickeys.events.init.ChunkListener"
     ],
     "stationapi:event_bus_client": [
       "net.alternateadventure.stapidoohickeys.events.init.TextureListener"
