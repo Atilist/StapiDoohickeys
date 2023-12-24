@@ -8,8 +8,8 @@ import net.modificationstation.stationapi.api.util.Identifier;
 
 import java.util.Random;
 
-public class LavaGenerator extends LazyBlockTemplate {
-    public LavaGenerator(Identifier identifier, Material material) {
+public class WaterGenerator extends LazyBlockTemplate {
+    public WaterGenerator(Identifier identifier, Material material) {
         super(identifier, material);
         this.setTickRandomly(true);
     }
@@ -27,7 +27,7 @@ public class LavaGenerator extends LazyBlockTemplate {
     public void onTick(World world, int x, int y, int z, Random random) {
         for (int i = y + 1; i < 128; i++) {
             if (world.getBlockId(x, i, z) == 0) {
-                world.method_154(x, i, z, BlockListener.lavaRealistic.id, 15);
+                world.method_154(x, i, z, BlockListener.waterRealistic.id, 15);
                 break;
             }
         }

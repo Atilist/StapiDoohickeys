@@ -19,6 +19,15 @@ public class BasaltHot extends FluidFalling {
             hasFallen = false;
             return;
         }
+        int surroundingLava = 0;
+        surroundingLava += getSurroundingLava(world, x + 1, y, z);
+        surroundingLava += getSurroundingLava(world, x - 1, y, z);
+        surroundingLava += getSurroundingLava(world, x, y, z + 1);
+        surroundingLava += getSurroundingLava(world, x, y, z - 1);
+        if (world.getBlockMeta(x, y, z) < 15 && surroundingLava - world.getBlockMeta(x, y, z) > 8) {
+            world.method_154(x, y, z, BlockListener.lavaRealistic.id, world.getBlockMeta(x, y, z));
+            return;
+        }
         if (world.getBlockId(x, y - 1, z) == BlockListener.lavaGenerator.id) {
             world.method_154(x, y, z, BlockListener.lavaRealistic.id, world.getBlockMeta(x, y, z));
         } else if (world.getBlockId(x, y - 1, z) == BlockListener.basalt.id && world.getBlockMeta(x, y - 1, z) < 15) {
@@ -26,5 +35,12 @@ public class BasaltHot extends FluidFalling {
         } else if (random.nextInt(256) == 0) {
             world.method_154(x, y, z, BlockListener.basalt.id, world.getBlockMeta(x, y, z));
         }
+    }
+
+    public int getSurroundingLava(World world, int x, int y, int z) {
+        if (world.getBlockId(x, y, z) != BlockListener.lavaRealistic.id) {
+            return 0;
+        }
+        else return world.getBlockMeta(x, y, z) + 1;
     }
 }

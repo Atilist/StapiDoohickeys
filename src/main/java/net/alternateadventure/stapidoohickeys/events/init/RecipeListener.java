@@ -26,6 +26,9 @@ public class RecipeListener {
             CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.basaltHot, 1), new ItemStack(Block.SAND));
             CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.lavaRealistic, 1), new ItemStack(Block.STONE));
             CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.lavaGenerator, 1), new ItemStack(Block.OBSIDIAN));
+
+            CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.waterRealistic, 1), new ItemStack(Block.GRASS_BLOCK));
+            CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.waterGenerator, 1), new ItemStack(Block.GLASS));
         }
     }
 }

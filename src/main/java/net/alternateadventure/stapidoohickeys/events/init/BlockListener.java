@@ -23,10 +23,15 @@ public class BlockListener {
     public static Block corruptionGrassEvolved;
     public static Block corruptionDirtEvolved;
 
-    public static FluidMotionless basalt;
+    public static LazyBlockTemplate basaltSimple;
+    public static Basalt basalt;
     public static BasaltHot basaltHot;
     public static LavaRealistic lavaRealistic;
     public static LavaGenerator lavaGenerator;
+
+    public static WaterRealistic waterRealistic;
+    public static WaterSimple waterSimple;
+    public static WaterGenerator waterGenerator;
 
     public static HashMap<Integer, Integer> convertedByLava = new HashMap<>();
 
@@ -45,10 +50,15 @@ public class BlockListener {
         corruptionGrassEvolved = new CorruptionGrassEvolved(Identifier.of(NAMESPACE, "corruption_grass_evolved"), Material.CLAY).setHardness(0.5F).setSoundGroup(Block.DIRT_SOUND_GROUP);
         corruptionDirtEvolved = new CorruptionDirtEvolved(Identifier.of(NAMESPACE, "corruption_dirt_evolved"), Material.CLAY).setHardness(0.5F).setSoundGroup(Block.DIRT_SOUND_GROUP);
 
-        basalt = new FluidMotionless(Identifier.of(NAMESPACE, "basalt"), Material.STONE);
+        basaltSimple = new LazyBlockTemplate(Identifier.of(NAMESPACE, "basalt_simple"), Material.STONE);
+        basalt = new Basalt(Identifier.of(NAMESPACE, "basalt"), Material.STONE);
         basaltHot = new BasaltHot(Identifier.of(NAMESPACE, "basalt_hot"), Material.STONE, 4);
-        lavaRealistic = new LavaRealistic(Identifier.of(NAMESPACE, "lava_realistic"), Material.STONE, 4);
+        lavaRealistic = new LavaRealistic(Identifier.of(NAMESPACE, "lava_realistic"), Material.LAVA, 4);
         lavaGenerator = new LavaGenerator(Identifier.of(NAMESPACE, "lava_generator"), Material.STONE);
+
+        waterRealistic = new WaterRealistic(Identifier.of(NAMESPACE, "water_realistic"), Material.WATER, 4);
+        waterSimple = new WaterSimple(Identifier.of(NAMESPACE, "water_simple"), Material.WATER);
+        waterGenerator = new WaterGenerator(Identifier.of(NAMESPACE, "water_generator"), Material.METAL);
 
         convertedByLava.put(Block.LEAVES.id, 0);
         convertedByLava.put(Block.LOG.id, 0);

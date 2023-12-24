@@ -22,7 +22,7 @@ public class FluidFalling extends FluidMotionless {
         if (world.getBlockId(x, y - 1, z) == 0) {
             lowerBlock(world, x, y, z);
             hasFallen = true;
-        } else if (world.getBlockId(x, y - 1, z) == this.id && world.getBlockMeta(x, y, z) < 15) {
+        } else if (world.getBlockId(x, y - 1, z) == this.id && world.getBlockMeta(x, y - 1, z) < 15) {
             int leftovers = fillBlock(world, x, y - 1, z, world.getBlockMeta(x, y, z) + 1);
             if (leftovers == -1) {
                 world.setBlock(x, y, z, 0);
