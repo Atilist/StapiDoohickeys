@@ -23,6 +23,9 @@ public class RecipeListener {
         }
         if (type == RecipeRegisterEvent.Vanilla.CRAFTING_SHAPELESS.type()) {
             CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.corruptionGrass, 1), new ItemStack(Block.DIRT));
+            CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.basaltHot, 1), new ItemStack(Block.SAND));
+            CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.lavaRealistic, 1), new ItemStack(Block.STONE));
+            CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.lavaGenerator, 1), new ItemStack(Block.OBSIDIAN));
         }
     }
 }

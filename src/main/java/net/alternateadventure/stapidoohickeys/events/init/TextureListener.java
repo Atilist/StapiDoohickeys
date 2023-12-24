@@ -2,6 +2,7 @@ package net.alternateadventure.stapidoohickeys.events.init;
 
 import net.alternateadventure.stapidoohickeys.blocks.*;
 import net.mine_diver.unsafeevents.listener.EventListener;
+import net.minecraft.block.Block;
 import net.modificationstation.stationapi.api.client.event.texture.TextureRegisterEvent;
 import net.modificationstation.stationapi.api.client.texture.atlas.Atlases;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
@@ -51,5 +52,10 @@ public class TextureListener {
         ((CorruptionDirtEvolved) BlockListener.corruptionDirtEvolved).specifyTextures (
                 Atlases.getTerrain().addTexture(Identifier.of(NAMESPACE, "block/corruption_dirt_evolved")).index
         );
+
+        BlockListener.basalt.setTextureId(Atlases.getTerrain().addTexture(Identifier.of(NAMESPACE, "block/fluid/basalt")).index);
+        BlockListener.basaltHot.setTextureId(Atlases.getTerrain().addTexture(Identifier.of(NAMESPACE, "block/fluid/basalt_hot")).index);
+        BlockListener.lavaRealistic.setTextureId(Block.LAVA.textureId);
+        BlockListener.lavaGenerator.setTextureId(Atlases.getTerrain().addTexture(Identifier.of(NAMESPACE, "block/lava_generator")).index);
     }
 }

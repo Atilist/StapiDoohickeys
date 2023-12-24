@@ -1,16 +1,16 @@
 package net.alternateadventure.stapidoohickeys.events.init;
 
 import net.alternateadventure.stapidoohickeys.blocks.*;
-import net.alternateadventure.stapidoohickeys.wrappers.ExampleBlockWithModel;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.modificationstation.stationapi.api.event.registry.BlockRegistryEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
-import net.modificationstation.stationapi.api.template.block.TemplateBlock;
 import net.modificationstation.stationapi.api.util.Identifier;
 import net.modificationstation.stationapi.api.util.Namespace;
 import net.modificationstation.stationapi.api.util.Null;
+
+import java.util.HashMap;
 
 public class BlockListener {
 
@@ -22,6 +22,13 @@ public class BlockListener {
     public static Block corruptionGrassWetSeeded;
     public static Block corruptionGrassEvolved;
     public static Block corruptionDirtEvolved;
+
+    public static FluidMotionless basalt;
+    public static BasaltHot basaltHot;
+    public static LavaRealistic lavaRealistic;
+    public static LavaGenerator lavaGenerator;
+
+    public static HashMap<Integer, Integer> convertedByLava = new HashMap<>();
 
     @Entrypoint.Namespace
     public static final Namespace NAMESPACE = Null.get();
@@ -37,5 +44,19 @@ public class BlockListener {
         corruptionGrassWetSeeded = new CorruptionGrassWetSeeded(Identifier.of(NAMESPACE, "corruption_grass_wet_seeded"), Material.CLAY).setHardness(0.5F).setSoundGroup(Block.DIRT_SOUND_GROUP);
         corruptionGrassEvolved = new CorruptionGrassEvolved(Identifier.of(NAMESPACE, "corruption_grass_evolved"), Material.CLAY).setHardness(0.5F).setSoundGroup(Block.DIRT_SOUND_GROUP);
         corruptionDirtEvolved = new CorruptionDirtEvolved(Identifier.of(NAMESPACE, "corruption_dirt_evolved"), Material.CLAY).setHardness(0.5F).setSoundGroup(Block.DIRT_SOUND_GROUP);
+
+        basalt = new FluidMotionless(Identifier.of(NAMESPACE, "basalt"), Material.STONE);
+        basaltHot = new BasaltHot(Identifier.of(NAMESPACE, "basalt_hot"), Material.STONE, 4);
+        lavaRealistic = new LavaRealistic(Identifier.of(NAMESPACE, "lava_realistic"), Material.STONE, 4);
+        lavaGenerator = new LavaGenerator(Identifier.of(NAMESPACE, "lava_generator"), Material.STONE);
+
+        convertedByLava.put(Block.LEAVES.id, 0);
+        convertedByLava.put(Block.LOG.id, 0);
+        convertedByLava.put(Block.GRASS.id, 0);
+        convertedByLava.put(Block.SNOW.id, 0);
+        convertedByLava.put(Block.SNOW_BLOCK.id, Block.WATER.id);
+        convertedByLava.put(Block.ICE.id, Block.WATER.id);
+        convertedByLava.put(Block.SAND.id, Block.GLASS.id);
+        convertedByLava.put(Block.WATER.id, Block.STONE.id);
     }
 }
