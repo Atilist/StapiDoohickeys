@@ -3,6 +3,7 @@ package net.alternateadventure.stapidoohickeys.blocks;
 import net.alternateadventure.stapidoohickeys.events.init.BlockListener;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
@@ -27,9 +28,29 @@ public class WaterRealistic extends FluidSpreading {
 
     @Override
     public void onTick(World world, int x, int y, int z, Random random) {
-        if (world.getBlockMeta(x, y, z) == 15 && isStuck(world, x, y, z)) {
+        int selfMeta = world.getBlockMeta(x, y, z);
+        if (selfMeta == 15 && isStuck(world, x, y, z)) {
             world.setBlock(x, y, z, BlockListener.waterSimple.id);
             return;
+        }
+        if (random.nextInt(32 + 64 * selfMeta) == 0) {
+            if (selfMeta == 0) {
+                world.setBlock(x, y, z, 0);
+                return;
+            }
+            world.method_154(x, y, z, this.id, selfMeta - 1);
+        }
+        if (world.getBlockMeta(x, y, z) < 15) {
+            activateStaticWater(world, x + 1, y, z);
+            activateStaticWater(world, x - 1, y, z);
+            activateStaticWater(world, x, y, z + 1);
+            activateStaticWater(world, x, y, z - 1);
+            activateRegularWater(world, x + 1, y, z);
+            activateRegularWater(world, x - 1, y, z);
+            activateRegularWater(world, x, y + 1, z);
+            activateRegularWater(world, x, y - 1, z);
+            activateRegularWater(world, x, y, z + 1);
+            activateRegularWater(world, x, y, z - 1);
         }
         super.onTick(world, x, y, z, random);
     }
@@ -46,5 +67,17 @@ public class WaterRealistic extends FluidSpreading {
         if (world.getBlockId(x, y, z) == 0) {
             return false;
         } else return world.getBlockId(x, y, z) != BlockListener.waterRealistic.id || world.getBlockMeta(x, y, z) >= 15;
+    }
+
+    public void activateStaticWater(World world, int x, int y, int z) {
+        if (world.getBlockId(x, y, z) == BlockListener.waterSimple.id) {
+            world.method_154(x, y, z, this.id, 15);
+        }
+    }
+
+    public void activateRegularWater(World world, int x, int y, int z) {
+        if (world.getBlockId(x, y, z) == Block.WATER.id || world.getBlockId(x, y, z) == Block.FLOWING_WATER.id) {
+            world.setBlock(x, y, z, BlockListener.waterSimple.id);
+        }
     }
 }

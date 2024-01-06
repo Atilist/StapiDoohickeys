@@ -11,6 +11,7 @@ import net.modificationstation.stationapi.api.util.Identifier;
 public class WaterSimple extends LazyBlockTemplate {
     public WaterSimple(Identifier identifier, Material material) {
         super(identifier, material);
+        setOpacity(3);
     }
 
     @Override

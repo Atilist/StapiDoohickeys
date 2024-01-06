@@ -68,5 +68,9 @@ public class BlockListener {
         convertedByLava.put(Block.ICE.id, Block.WATER.id);
         convertedByLava.put(Block.SAND.id, Block.GLASS.id);
         convertedByLava.put(Block.WATER.id, Block.STONE.id);
+        convertedByLava.put(BlockListener.waterRealistic.id, Block.STONE.id);
+        convertedByLava.put(BlockListener.waterSimple.id, Block.STONE.id);
+        convertedByLava.put(Block.GRASS_BLOCK.id, Block.GRAVEL.id);
+        convertedByLava.put(Block.DIRT.id, Block.GRAVEL.id);
     }
 }
