@@ -10,6 +10,7 @@ import java.util.Random;
 public class Basalt extends FluidMotionless {
     public Basalt(Identifier identifier, Material material) {
         super(identifier, material);
+        setHardness(2.5F);
         this.setTickRandomly(true);
     }
 

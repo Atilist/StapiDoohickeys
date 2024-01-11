@@ -26,7 +26,11 @@ public class LavaGenerator extends LazyBlockTemplate {
     @Override
     public void onTick(World world, int x, int y, int z, Random random) {
         for (int i = y + 1; i < 128; i++) {
-            if (world.getBlockId(x, i, z) == 0) {
+            if (world.getBlockId(x, i, z) == BlockListener.basaltSimple.id) {
+                world.method_154(x, i, z, BlockListener.lavaRealistic.id, 15);
+            } else if (world.getBlockId(x, i, z) == BlockListener.basalt.id || world.getBlockId(x, i, z) == BlockListener.basaltHot.id) {
+                world.method_154(x, i, z, BlockListener.lavaRealistic.id, world.getBlockMeta(x, i, z));
+            } else if (world.getBlockId(x, i, z) == 0) {
                 world.method_154(x, i, z, BlockListener.lavaRealistic.id, 15);
                 break;
             }

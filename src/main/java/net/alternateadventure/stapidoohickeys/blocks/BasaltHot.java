@@ -9,7 +9,8 @@ import java.util.Random;
 
 public class BasaltHot extends FluidFalling {
     public BasaltHot(Identifier identifier, Material material, int tickRate) {
-        super(identifier, material, tickRate);
+        super(identifier, material, tickRate, 5.0F);
+        setHardness(2.5F);
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class LavaRealistic extends FluidSpreading {
     public LavaRealistic(Identifier identifier, Material material, int tickRate) {
-        super(identifier, material, tickRate);
+        super(identifier, material, tickRate , 5.0F);
         this.setLuminance(1.0F);
     }
 

@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class WaterRealistic extends FluidSpreading {
     public WaterRealistic(Identifier identifier, Material material, int tickRate) {
-        super(identifier, material, tickRate);
+        super(identifier, material, tickRate, 1.0F);
         setOpacity(3);
     }
 
@@ -43,6 +43,7 @@ public class WaterRealistic extends FluidSpreading {
         if (world.getBlockMeta(x, y, z) < 15) {
             activateStaticWater(world, x + 1, y, z);
             activateStaticWater(world, x - 1, y, z);
+            activateStaticWater(world, x, y + 1, z);
             activateStaticWater(world, x, y, z + 1);
             activateStaticWater(world, x, y, z - 1);
             activateRegularWater(world, x + 1, y, z);

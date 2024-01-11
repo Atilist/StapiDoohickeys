@@ -1,5 +1,6 @@
 package net.alternateadventure.stapidoohickeys.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.block.BlockState;
@@ -10,11 +11,14 @@ import java.util.Random;
 public class FluidFalling extends FluidMotionless {
     private final int tickRate;
     protected boolean hasFallen = false;
+    protected int optimizedBlockId = -1;
+    protected float density;
 
-    public FluidFalling(Identifier identifier, Material material, int tickRate) {
+    public FluidFalling(Identifier identifier, Material material, int tickRate, float density) {
         super(identifier, material);
         this.setTickRandomly(true);
         this.tickRate = tickRate;
+        this.density = density;
     }
 
     @Override
@@ -31,6 +35,23 @@ public class FluidFalling extends FluidMotionless {
             }
             hasFallen = true;
         }
+        if (world.getBlockId(x, y + 1, z) == this.id) {
+            world.method_216(x, y, z, this.id, this.getTickRate());
+            return;
+        }
+        int pressure = 0;
+        int height = y;
+        for (; height >= 0; height--) {
+            if (world.getBlockId(x, height, z) == this.id) {
+                pressure += world.getBlockMeta(x, height, z) + 1;
+            } else if (optimizedBlockId != -1 && world.getBlockId(x, height, z) == optimizedBlockId) {
+                pressure += 16;
+            } else {
+                break;
+            }
+        }
+        pressure *= density;
+        crushBlock(world, x, height, z, pressure);
         world.method_216(x, y, z, this.id, this.getTickRate());
     }
 
@@ -51,6 +72,40 @@ public class FluidFalling extends FluidMotionless {
         }
         world.method_154(x, y, z, this.id, totalQuantity);
         return leftovers - 1;
+    }
+
+    public void setOptimizedBlockId(int optimizedBlockId) {
+        this.optimizedBlockId = optimizedBlockId;
+    }
+
+    public void crushBlock(World world, int x, int y, int z, float pressure) {
+        int blockId = world.getBlockId(x, y, z);
+        if (blockId == this.id || blockId == optimizedBlockId) {
+            return;
+        }
+        Block block = Block.BLOCKS[blockId];
+        if (block == null) {
+            return;
+        }
+        float hardness = block.getHardness() * 10;
+        float blastResistance = block.getBlastResistance(null) * 10;
+        boolean airBelow = false;
+        for (int i = 1; i <= 5; i++) {
+            if (world.getBlockId(x, y - i, z) == 0) {
+                airBelow = true;
+                break;
+            } else {
+                block = Block.BLOCKS[world.getBlockId(x, y - i, z)];
+                if (block == null) {
+                    continue;
+                }
+                hardness += block.getHardness() * 10;
+                blastResistance += block.getBlastResistance(null) * 10;
+            }
+        }
+        if (pressure > hardness + blastResistance && airBelow) {
+            world.setBlock(x, y, z, 0);
+        }
     }
 
     @Override
