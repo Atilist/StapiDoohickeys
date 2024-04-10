@@ -62,5 +62,6 @@ public class TextureListener {
         BlockListener.waterRealistic.setTextureId(Block.WATER.textureId);
         BlockListener.waterSimple.setTextureId(Block.WATER.textureId);
         BlockListener.waterGenerator.setTextureId(Block.WATER.textureId);
+        BlockListener.waterDrainer.setTextureId(Block.SPONGE.textureId);
     }
 }

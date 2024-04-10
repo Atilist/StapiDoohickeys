@@ -32,6 +32,7 @@ public class BlockListener {
     public static WaterRealistic waterRealistic;
     public static WaterSimple waterSimple;
     public static WaterGenerator waterGenerator;
+    public static WaterDrainer waterDrainer;
 
     public static HashMap<Integer, Integer> convertedByLava = new HashMap<>();
 
@@ -59,11 +60,13 @@ public class BlockListener {
         waterRealistic = new WaterRealistic(Identifier.of(NAMESPACE, "water_realistic"), Material.WATER, 4);
         waterSimple = new WaterSimple(Identifier.of(NAMESPACE, "water_simple"), Material.WATER);
         waterGenerator = new WaterGenerator(Identifier.of(NAMESPACE, "water_generator"), Material.METAL);
+        waterDrainer = new WaterDrainer(Identifier.of(NAMESPACE, "water_drainer"), Material.METAL);
 
         convertedByLava.put(Block.LEAVES.id, 0);
         convertedByLava.put(Block.LOG.id, 0);
         convertedByLava.put(Block.GRASS.id, 0);
         convertedByLava.put(Block.SNOW.id, 0);
+        convertedByLava.put(Block.WOOL.id, 0);
         convertedByLava.put(Block.SNOW_BLOCK.id, Block.WATER.id);
         convertedByLava.put(Block.ICE.id, Block.WATER.id);
         convertedByLava.put(Block.SAND.id, Block.GLASS.id);
@@ -72,6 +75,9 @@ public class BlockListener {
         convertedByLava.put(BlockListener.waterSimple.id, Block.STONE.id);
         convertedByLava.put(Block.GRASS_BLOCK.id, Block.GRAVEL.id);
         convertedByLava.put(Block.DIRT.id, Block.GRAVEL.id);
+        convertedByLava.put(Block.STONE.id, Block.COBBLESTONE.id);
+        convertedByLava.put(Block.COBBLESTONE.id, Block.GRAVEL.id);
+        convertedByLava.put(Block.MOSSY_COBBLESTONE.id, Block.COBBLESTONE.id);
 
         waterRealistic.setOptimizedBlockId(waterSimple.id);
     }

@@ -14,7 +14,6 @@ public class ChunkListener {
     }
 
     public void populateOverworld (WorldGenEvent.ChunkDecoration event) {
-        /*
         int x;
         int y;
         int z;
@@ -30,7 +29,5 @@ public class ChunkListener {
             z = event.z + event.random.nextInt(16);
             new GameStarCathedral().method_1142(event.world, event.random, x, y, z);
         }
-
-         */
     }
 }
