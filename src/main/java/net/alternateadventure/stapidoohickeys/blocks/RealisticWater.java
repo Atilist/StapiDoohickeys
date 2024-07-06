@@ -11,8 +11,8 @@ import net.modificationstation.stationapi.api.util.Identifier;
 
 import java.util.Random;
 
-public class WaterRealistic extends FluidSpreading {
-    public WaterRealistic(Identifier identifier, Material material, int tickRate) {
+public class RealisticWater extends FluidSpreading {
+    public RealisticWater(Identifier identifier, Material material, int tickRate) {
         super(identifier, material, tickRate, 1.0F);
         setOpacity(3);
     }
@@ -30,10 +30,10 @@ public class WaterRealistic extends FluidSpreading {
     public void onTick(World world, int x, int y, int z, Random random) {
         int selfMeta = world.getBlockMeta(x, y, z);
         if (selfMeta == 15 && isStuck(world, x, y, z)) {
-            world.setBlock(x, y, z, BlockListener.waterSimple.id);
+            world.setBlock(x, y, z, BlockListener.simpleWater.id);
             return;
         }
-        if (random.nextInt(32 + 64 * selfMeta) == 0) {
+        if (random.nextInt(4 + 8 * selfMeta) == 0) {
             if (selfMeta == 0) {
                 world.setBlock(x, y, z, 0);
                 return;
@@ -67,18 +67,18 @@ public class WaterRealistic extends FluidSpreading {
     public boolean canNotMoveHere(World world, int x, int y, int z) {
         if (world.getBlockId(x, y, z) == 0) {
             return false;
-        } else return world.getBlockId(x, y, z) != BlockListener.waterRealistic.id || world.getBlockMeta(x, y, z) >= 15;
+        } else return world.getBlockId(x, y, z) != BlockListener.realisticWater.id || world.getBlockMeta(x, y, z) >= 15;
     }
 
     public void activateStaticWater(World world, int x, int y, int z) {
-        if (world.getBlockId(x, y, z) == BlockListener.waterSimple.id) {
+        if (world.getBlockId(x, y, z) == BlockListener.simpleWater.id) {
             world.method_154(x, y, z, this.id, 15);
         }
     }
 
     public void activateRegularWater(World world, int x, int y, int z) {
         if (world.getBlockId(x, y, z) == Block.WATER.id || world.getBlockId(x, y, z) == Block.FLOWING_WATER.id) {
-            world.setBlock(x, y, z, BlockListener.waterSimple.id);
+            world.setBlock(x, y, z, BlockListener.simpleWater.id);
         }
     }
 }

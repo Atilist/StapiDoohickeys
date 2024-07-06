@@ -27,7 +27,7 @@ public class WaterGenerator extends LazyBlockTemplate {
     public void onTick(World world, int x, int y, int z, Random random) {
         for (int i = y + 1; i < 128; i++) {
             if (world.getBlockId(x, i, z) == 0) {
-                world.method_154(x, i, z, BlockListener.waterRealistic.id, 15);
+                world.method_154(x, i, z, BlockListener.realisticWater.id, 15);
                 break;
             }
         }

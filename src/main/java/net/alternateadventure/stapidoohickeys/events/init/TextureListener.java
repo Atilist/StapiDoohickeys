@@ -55,12 +55,12 @@ public class TextureListener {
 
         BlockListener.basaltSimple.setTextureId(Atlases.getTerrain().addTexture(Identifier.of(NAMESPACE, "block/fluid/basalt")).index);
         BlockListener.basalt.setTextureId(Atlases.getTerrain().addTexture(Identifier.of(NAMESPACE, "block/fluid/basalt")).index);
-        BlockListener.basaltHot.setTextureId(Atlases.getTerrain().addTexture(Identifier.of(NAMESPACE, "block/fluid/basalt_hot")).index);
-        BlockListener.lavaRealistic.setTextureId(Block.LAVA.textureId);
+        BlockListener.hotBasalt.setTextureId(Atlases.getTerrain().addTexture(Identifier.of(NAMESPACE, "block/fluid/basalt_hot")).index);
+        BlockListener.realisticLava.setTextureId(Block.LAVA.textureId);
         BlockListener.lavaGenerator.setTextureId(Atlases.getTerrain().addTexture(Identifier.of(NAMESPACE, "block/lava_generator")).index);
 
-        BlockListener.waterRealistic.setTextureId(Block.WATER.textureId);
-        BlockListener.waterSimple.setTextureId(Block.WATER.textureId);
+        BlockListener.realisticWater.setTextureId(Block.WATER.textureId);
+        BlockListener.simpleWater.setTextureId(Block.WATER.textureId);
         BlockListener.waterGenerator.setTextureId(Block.WATER.textureId);
         BlockListener.waterDrainer.setTextureId(Block.SPONGE.textureId);
     }

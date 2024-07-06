@@ -8,8 +8,8 @@ import net.modificationstation.stationapi.api.util.Identifier;
 
 import java.util.Random;
 
-public class LavaRealistic extends FluidSpreading {
-    public LavaRealistic(Identifier identifier, Material material, int tickRate) {
+public class RealisticLava extends FluidSpreading {
+    public RealisticLava(Identifier identifier, Material material, int tickRate) {
         super(identifier, material, tickRate , 5.0F);
         this.setLuminance(1.0F);
     }
@@ -17,8 +17,8 @@ public class LavaRealistic extends FluidSpreading {
     @Override
     public void onTick(World world, int x, int y, int z, Random random) {
         super.onTick(world, x, y, z, random);
-        if (random.nextInt(4096) == 0 && world.getBlockId(x, y - 1, z) == BlockListener.lavaRealistic.id && world.getBlockMeta(x, y - 1, z) == 15 && world.getBlockId(x, y + 1, z) == 0) {
-            world.method_154(x, y, z, BlockListener.basaltHot.id, world.getBlockMeta(x, y, z));
+        if (random.nextInt(4096) == 0 && world.getBlockId(x, y - 1, z) == BlockListener.realisticLava.id && world.getBlockMeta(x, y - 1, z) == 15 && world.getBlockId(x, y + 1, z) == 0) {
+            world.method_154(x, y, z, BlockListener.hotBasalt.id, world.getBlockMeta(x, y, z));
             return;
         }
         if (random.nextInt(128) == 0 && !(world.getBlockId(x, y - 1, z) == this.id && world.getBlockMeta(x, y - 1, z) < 15) && world.getBlockId(x, y - 1, z) != BlockListener.lavaGenerator.id) {
@@ -29,31 +29,31 @@ public class LavaRealistic extends FluidSpreading {
             surroundingLava += getSurroundingLava(world, x, y, z + 1);
             surroundingLava += getSurroundingLava(world, x, y, z - 1);
             if (surroundingLava < world.getBlockMeta(x, y, z) + 64) {
-                world.method_154(x, y, z, BlockListener.basaltHot.id, world.getBlockMeta(x, y, z));
+                world.method_154(x, y, z, BlockListener.hotBasalt.id, world.getBlockMeta(x, y, z));
                 return;
             }
         }
-        if (world.getBlockId(x, y - 1, z) == BlockListener.basaltHot.id) {
+        if (world.getBlockId(x, y - 1, z) == BlockListener.hotBasalt.id) {
             if (random.nextInt(2) == 0) {
                 world.method_154(x, y - 1, z, this.id, world.getBlockMeta(x, y - 1, z));
             } else {
-                world.method_154(x, y, z, BlockListener.basaltHot.id, world.getBlockMeta(x, y, z));
+                world.method_154(x, y, z, BlockListener.hotBasalt.id, world.getBlockMeta(x, y, z));
             }
         } else if (world.getBlockId(x, y - 1, z) == BlockListener.basalt.id && world.getBlockMeta(x, y - 1, z) < 15) {
             if (random.nextInt(2) > 0) {
-                world.method_154(x, y - 1, z, BlockListener.basaltHot.id, world.getBlockMeta(x, y - 1, z));
+                world.method_154(x, y - 1, z, BlockListener.hotBasalt.id, world.getBlockMeta(x, y - 1, z));
             } else {
-                world.method_154(x, y, z, BlockListener.basaltHot.id, world.getBlockMeta(x, y, z));
+                world.method_154(x, y, z, BlockListener.hotBasalt.id, world.getBlockMeta(x, y, z));
             }
         }
-        if (world.getBlockId(x, y + 1, z) == BlockListener.basaltHot.id) {
+        if (world.getBlockId(x, y + 1, z) == BlockListener.hotBasalt.id) {
             if (random.nextInt(8) == 0) {
                 world.method_154(x, y + 1, z, this.id, world.getBlockMeta(x, y + 1, z));
             } else {
-                world.method_154(x, y, z, BlockListener.basaltHot.id, world.getBlockMeta(x, y, z));
+                world.method_154(x, y, z, BlockListener.hotBasalt.id, world.getBlockMeta(x, y, z));
             }
         } else if (world.getBlockId(x, y + 1, z) == BlockListener.basalt.id) {
-            world.method_154(x, y + 1, z, BlockListener.basaltHot.id, world.getBlockMeta(x, y + 1, z));
+            world.method_154(x, y + 1, z, BlockListener.hotBasalt.id, world.getBlockMeta(x, y + 1, z));
         }
         convertBlock(world, x + 1, y, z);
         convertBlock(world, x - 1, y, z);
@@ -71,7 +71,7 @@ public class LavaRealistic extends FluidSpreading {
     }
 
     public int getSurroundingLava(World world, int x, int y, int z) {
-        if (world.getBlockId(x, y, z) != BlockListener.lavaRealistic.id) {
+        if (world.getBlockId(x, y, z) != BlockListener.realisticLava.id) {
             return 0;
         }
         else return world.getBlockMeta(x, y, z) + 1;

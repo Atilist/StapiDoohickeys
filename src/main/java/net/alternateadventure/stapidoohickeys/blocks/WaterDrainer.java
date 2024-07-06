@@ -26,7 +26,7 @@ public class WaterDrainer extends LazyBlockTemplate {
             for (int yOffset = 1; yOffset <= 10; yOffset++) {
                 for (int zOffset = -5; zOffset <= 5; zOffset++) {
                     int aboveId = world.getBlockId(x + xOffset, y + yOffset, z + zOffset);
-                    if (aboveId == BlockListener.waterRealistic.id || aboveId == BlockListener.waterSimple.id || aboveId == Block.WATER.id || aboveId == Block.FLOWING_WATER.id) world.setBlock(x + xOffset, y + yOffset, z + zOffset, 0);
+                    if (aboveId == BlockListener.realisticWater.id || aboveId == BlockListener.simpleWater.id || aboveId == Block.WATER.id || aboveId == Block.FLOWING_WATER.id) world.setBlock(x + xOffset, y + yOffset, z + zOffset, 0);
                 }
             }
         }

@@ -8,8 +8,8 @@ import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.util.Identifier;
 
-public class WaterSimple extends LazyBlockTemplate {
-    public WaterSimple(Identifier identifier, Material material) {
+public class SimpleWater extends LazyBlockTemplate {
+    public SimpleWater(Identifier identifier, Material material) {
         super(identifier, material);
         setOpacity(3);
     }
@@ -19,7 +19,7 @@ public class WaterSimple extends LazyBlockTemplate {
         if (isStuck(world, x, y, z)) {
             return;
         }
-        world.method_154(x, y, z, BlockListener.waterRealistic.id, 15);
+        world.method_154(x, y, z, BlockListener.realisticWater.id, 15);
     }
 
     public boolean isStuck(World world, int x, int y, int z) {
@@ -33,7 +33,7 @@ public class WaterSimple extends LazyBlockTemplate {
     public boolean canNotMoveHere(World world, int x, int y, int z) {
         if (world.getBlockId(x, y, z) == 0) {
             return false;
-        } else return world.getBlockId(x, y, z) != BlockListener.waterRealistic.id || world.getBlockMeta(x, y, z) >= 15;
+        } else return world.getBlockId(x, y, z) != BlockListener.realisticWater.id || world.getBlockMeta(x, y, z) >= 15;
     }
 
     @Environment(EnvType.CLIENT)

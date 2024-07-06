@@ -25,12 +25,12 @@ public class BlockListener {
 
     public static LazyBlockTemplate basaltSimple;
     public static Basalt basalt;
-    public static BasaltHot basaltHot;
-    public static LavaRealistic lavaRealistic;
+    public static HotBasalt hotBasalt;
+    public static RealisticLava realisticLava;
     public static LavaGenerator lavaGenerator;
 
-    public static WaterRealistic waterRealistic;
-    public static WaterSimple waterSimple;
+    public static RealisticWater realisticWater;
+    public static SimpleWater simpleWater;
     public static WaterGenerator waterGenerator;
     public static WaterDrainer waterDrainer;
 
@@ -53,12 +53,12 @@ public class BlockListener {
 
         basaltSimple = new LazyBlockTemplate(Identifier.of(NAMESPACE, "basalt_simple"), Material.STONE);
         basalt = new Basalt(Identifier.of(NAMESPACE, "basalt"), Material.STONE);
-        basaltHot = new BasaltHot(Identifier.of(NAMESPACE, "basalt_hot"), Material.STONE, 4);
-        lavaRealistic = new LavaRealistic(Identifier.of(NAMESPACE, "lava_realistic"), Material.LAVA, 4);
+        hotBasalt = new HotBasalt(Identifier.of(NAMESPACE, "basalt_hot"), Material.STONE, 4);
+        realisticLava = new RealisticLava(Identifier.of(NAMESPACE, "lava_realistic"), Material.LAVA, 4);
         lavaGenerator = new LavaGenerator(Identifier.of(NAMESPACE, "lava_generator"), Material.STONE);
 
-        waterRealistic = new WaterRealistic(Identifier.of(NAMESPACE, "water_realistic"), Material.WATER, 4);
-        waterSimple = new WaterSimple(Identifier.of(NAMESPACE, "water_simple"), Material.WATER);
+        realisticWater = new RealisticWater(Identifier.of(NAMESPACE, "water_realistic"), Material.WATER, 4);
+        simpleWater = new SimpleWater(Identifier.of(NAMESPACE, "water_simple"), Material.WATER);
         waterGenerator = new WaterGenerator(Identifier.of(NAMESPACE, "water_generator"), Material.METAL);
         waterDrainer = new WaterDrainer(Identifier.of(NAMESPACE, "water_drainer"), Material.METAL);
 
@@ -71,14 +71,14 @@ public class BlockListener {
         convertedByLava.put(Block.ICE.id, Block.WATER.id);
         convertedByLava.put(Block.SAND.id, Block.GLASS.id);
         convertedByLava.put(Block.WATER.id, Block.STONE.id);
-        convertedByLava.put(BlockListener.waterRealistic.id, Block.STONE.id);
-        convertedByLava.put(BlockListener.waterSimple.id, Block.STONE.id);
+        convertedByLava.put(BlockListener.realisticWater.id, Block.STONE.id);
+        convertedByLava.put(BlockListener.simpleWater.id, Block.STONE.id);
         convertedByLava.put(Block.GRASS_BLOCK.id, Block.GRAVEL.id);
         convertedByLava.put(Block.DIRT.id, Block.GRAVEL.id);
         convertedByLava.put(Block.STONE.id, Block.COBBLESTONE.id);
         convertedByLava.put(Block.COBBLESTONE.id, Block.GRAVEL.id);
         convertedByLava.put(Block.MOSSY_COBBLESTONE.id, Block.COBBLESTONE.id);
 
-        waterRealistic.setOptimizedBlockId(waterSimple.id);
+        realisticWater.setOptimizedBlockId(simpleWater.id);
     }
 }
