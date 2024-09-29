@@ -1,15 +1,15 @@
 package net.alternateadventure.stapidoohickeys.structures;
 
 import net.minecraft.block.Block;
-import net.minecraft.class_239;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 
-public class GameStarTower extends class_239 {
+public class GameStarTower extends Feature {
 
     @Override
-    public boolean method_1142(World world, Random random, int x, int y, int z) {
+    public boolean generate(World world, Random random, int x, int y, int z) {
         if (world.getBlockId(x, y, z) != Block.GRASS_BLOCK.id && world.getBlockId(x, y, z) != Block.SAND.id) {
             return false;
         }

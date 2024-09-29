@@ -3,7 +3,7 @@ package net.alternateadventure.stapidoohickeys.blocks;
 import net.alternateadventure.stapidoohickeys.events.init.BlockListener;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Material;
+import net.minecraft.block.material.Material;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.util.Identifier;
@@ -19,7 +19,7 @@ public class SimpleWater extends LazyBlockTemplate {
         if (isStuck(world, x, y, z)) {
             return;
         }
-        world.method_154(x, y, z, BlockListener.realisticWater.id, 15);
+        world.setBlock(x, y, z, BlockListener.realisticWater.id, 15);
     }
 
     public boolean isStuck(World world, int x, int y, int z) {

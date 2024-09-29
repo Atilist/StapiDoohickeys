@@ -1,6 +1,6 @@
 package net.alternateadventure.stapidoohickeys.blocks;
 
-import net.minecraft.block.Material;
+import net.minecraft.block.material.Material;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;

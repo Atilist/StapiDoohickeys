@@ -2,7 +2,7 @@ package net.alternateadventure.stapidoohickeys.blocks;
 
 import net.alternateadventure.stapidoohickeys.events.init.BlockListener;
 import net.minecraft.block.Block;
-import net.minecraft.block.Material;
+import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.util.Identifier;
@@ -30,12 +30,12 @@ public class WaterDrainer extends LazyBlockTemplate {
                 }
             }
         }
-        world.method_216(x, y, z, this.id, this.getTickRate());
+        world.scheduleBlockUpdate(x, y, z, this.id, this.getTickRate());
     }
 
     @Override
     public void onBlockPlaced(World world, int x, int y, int z, BlockState replacedState) {
         super.onBlockPlaced(world, x, y, z, replacedState);
-        world.method_216(x, y, z, this.id, this.getTickRate());
+        world.scheduleBlockUpdate(x, y, z, this.id, this.getTickRate());
     }
 }

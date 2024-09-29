@@ -1,7 +1,7 @@
 package net.alternateadventure.stapidoohickeys.blocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.Material;
+import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.util.Identifier;
 
@@ -33,7 +33,7 @@ public class FluidSpreading extends FluidFalling {
                 break;
             }
             if (leftoverQuantity != sourceQuantity) {
-                world.method_154(x, y, z, this.id, leftoverQuantity);
+                world.setBlock(x, y, z, this.id, leftoverQuantity);
                 return;
             }
         }
@@ -48,7 +48,7 @@ public class FluidSpreading extends FluidFalling {
                 break;
             }
             if (leftoverQuantity != sourceQuantity) {
-                world.method_154(x, y, z, this.id, leftoverQuantity);
+                world.setBlock(x, y, z, this.id, leftoverQuantity);
                 return;
             }
         }
@@ -96,7 +96,7 @@ public class FluidSpreading extends FluidFalling {
             return sourceQuantity;
         }
         int outgoingExcess = excessQuantity / 2;
-        world.method_154(x, y, z, this.id, outgoingExcess + targetQuantity);
+        world.setBlock(x, y, z, this.id, outgoingExcess + targetQuantity);
         return sourceQuantity - outgoingExcess;
     }
 
@@ -111,7 +111,7 @@ public class FluidSpreading extends FluidFalling {
         if (outgoingExcess <= 0) {
             return sourceQuantity;
         }
-        world.method_154(x, y, z, this.id, outgoingExcess);
+        world.setBlock(x, y, z, this.id, outgoingExcess);
         return sourceQuantity - outgoingExcess;
     }
 

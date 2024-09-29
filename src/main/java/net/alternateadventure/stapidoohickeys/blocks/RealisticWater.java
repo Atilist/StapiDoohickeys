@@ -4,7 +4,7 @@ import net.alternateadventure.stapidoohickeys.events.init.BlockListener;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
-import net.minecraft.block.Material;
+import net.minecraft.block.material.Material;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.util.Identifier;
@@ -38,7 +38,7 @@ public class RealisticWater extends FluidSpreading {
                 world.setBlock(x, y, z, 0);
                 return;
             }
-            world.method_154(x, y, z, this.id, selfMeta - 1);
+            world.setBlock(x, y, z, this.id, selfMeta - 1);
         }
         if (world.getBlockMeta(x, y, z) < 15) {
             activateStaticWater(world, x + 1, y, z);
@@ -72,7 +72,7 @@ public class RealisticWater extends FluidSpreading {
 
     public void activateStaticWater(World world, int x, int y, int z) {
         if (world.getBlockId(x, y, z) == BlockListener.simpleWater.id) {
-            world.method_154(x, y, z, this.id, 15);
+            world.setBlock(x, y, z, this.id, 15);
         }
     }
 

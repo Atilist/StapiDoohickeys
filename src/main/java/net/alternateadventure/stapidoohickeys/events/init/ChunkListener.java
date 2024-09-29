@@ -21,13 +21,13 @@ public class ChunkListener {
             x = event.x + event.random.nextInt(16);
             y = 64 + event.random.nextInt(8);
             z = event.z + event.random.nextInt(16);
-            new GameStarTower().method_1142(event.world, event.random, x, y, z);
+            new GameStarTower().generate(event.world, event.random, x, y, z);
         }
         if (event.random.nextInt(128) == 0){
             x = event.x + event.random.nextInt(16);
             y = 64 + event.random.nextInt(8);
             z = event.z + event.random.nextInt(16);
-            new GameStarCathedral().method_1142(event.world, event.random, x, y, z);
+            new GameStarCathedral().generate(event.world, event.random, x, y, z);
         }
     }
 }

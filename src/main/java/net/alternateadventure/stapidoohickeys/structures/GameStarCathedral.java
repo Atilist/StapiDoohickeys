@@ -1,15 +1,15 @@
 package net.alternateadventure.stapidoohickeys.structures;
 
 import net.minecraft.block.Block;
-import net.minecraft.class_239;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 
-public class GameStarCathedral extends class_239 {
+public class GameStarCathedral extends Feature {
 
     @Override
-    public boolean method_1142(World world, Random random, int x, int y, int z) {
+    public boolean generate(World world, Random random, int x, int y, int z) {
         // Foundation
         for (int xOffset = -2; xOffset < 127; xOffset++) {
             for (int zOffset = -22; zOffset <= 22; zOffset++) {
@@ -33,7 +33,7 @@ public class GameStarCathedral extends class_239 {
         }
         for (int i = 0; i < 125; i++) {
             for (int j = -3; j <= 3; j++) {
-                world.method_154(x + i, y + 3, z + j, Block.WOOL.id, 14);
+                world.setBlock(x + i, y + 3, z + j, Block.WOOL.id, 14);
             }
         }
 
@@ -145,7 +145,7 @@ public class GameStarCathedral extends class_239 {
         for (int xOffset = -width; xOffset <= width; xOffset++) {
             for (int zOffset = -width; zOffset <= width; zOffset++) {
                 if (Math.abs(xOffset) + Math.abs(zOffset) > width) continue;
-                world.method_154(x + xOffset, y, z + zOffset, blockId, meta); // I really should update my mappings
+                world.setBlock(x + xOffset, y, z + zOffset, blockId, meta); // I really should update my mappings
             }
         }
     }

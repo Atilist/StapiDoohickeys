@@ -1,8 +1,7 @@
 package net.alternateadventure.stapidoohickeys.blocks;
 
 import net.alternateadventure.stapidoohickeys.events.init.BlockListener;
-import net.minecraft.block.Block;
-import net.minecraft.block.Material;
+import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.template.block.TemplateBlock;
 import net.modificationstation.stationapi.api.util.Identifier;
@@ -52,7 +51,7 @@ public class CorruptionLeavesWetMature extends TemplateBlock {
             world.setBlock(x, y, z, 0);
             return;
         }
-        world.method_216(x, y, z, this.id, this.getTickRate());
+        world.scheduleBlockUpdate(x, y, z, this.id, this.getTickRate());
     }
 
     @Override

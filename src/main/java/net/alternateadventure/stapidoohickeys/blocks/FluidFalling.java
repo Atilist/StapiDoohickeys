@@ -1,7 +1,7 @@
 package net.alternateadventure.stapidoohickeys.blocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.Material;
+import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.util.Identifier;
@@ -31,12 +31,12 @@ public class FluidFalling extends FluidMotionless {
             if (leftovers == -1) {
                 world.setBlock(x, y, z, 0);
             } else {
-                world.method_154(x, y, z, this.id, leftovers);
+                world.setBlock(x, y, z, this.id, leftovers);
             }
             hasFallen = true;
         }
         if (world.getBlockId(x, y + 1, z) == this.id) {
-            world.method_216(x, y, z, this.id, this.getTickRate());
+            world.scheduleBlockUpdate(x, y, z, this.id, this.getTickRate());
             return;
         }
         int pressure = 0;
@@ -52,11 +52,11 @@ public class FluidFalling extends FluidMotionless {
         }
         pressure *= density;
         crushBlock(world, x, height, z, pressure);
-        world.method_216(x, y, z, this.id, this.getTickRate());
+        world.scheduleBlockUpdate(x, y, z, this.id, this.getTickRate());
     }
 
     public void lowerBlock(World world, int x, int y, int z) {
-        world.method_154(x, y - 1, z, this.id, world.getBlockMeta(x, y, z));
+        world.setBlock(x, y - 1, z, this.id, world.getBlockMeta(x, y, z));
         world.setBlock(x, y, z, 0);
     }
 
@@ -70,7 +70,7 @@ public class FluidFalling extends FluidMotionless {
         if (totalQuantity > 15) {
             totalQuantity = 15;
         }
-        world.method_154(x, y, z, this.id, totalQuantity);
+        world.setBlock(x, y, z, this.id, totalQuantity);
         return leftovers - 1;
     }
 
@@ -115,13 +115,13 @@ public class FluidFalling extends FluidMotionless {
 
     @Override
     public void neighborUpdate(World world, int x, int y, int z, int id) {
-        world.method_216(x, y, z, this.id, this.getTickRate());
+        world.scheduleBlockUpdate(x, y, z, this.id, this.getTickRate());
     }
 
     @Override
     public void onBlockPlaced(World world, int x, int y, int z, BlockState replacedState) {
         super.onBlockPlaced(world, x, y, z, replacedState);
-        world.method_216(x, y, z, this.id, this.getTickRate());
+        world.scheduleBlockUpdate(x, y, z, this.id, this.getTickRate());
     }
 
 }
